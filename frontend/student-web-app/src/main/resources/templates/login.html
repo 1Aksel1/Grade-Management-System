@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+</head>
+<body>
+<div class="p-5">
+    <h2 class="text-center">Log in</h2>
+    <br>
+
+    <form th:action="@{/login}" th:object="${loginRequest}" method="post">
+        <div class="form-group">
+            <label>Email: </label>
+            <input type="text" class="form-control" th:field="*{email}" required>
+
+            <label>Password: </label>
+            <input type="password" class="form-control" th:field="*{password}" required>
+
+            <br>
+
+            <button class="btn btn-primary" type="submit">Log in</button>
+
+        </div>
+
+    </form>
+
+    <br>
+
+    <div class="form-group">
+        <a th:href="@{/register}">Register a student account</a>
+    </div>
+
+    <br>
+    <br>
+
+    <div th:if="${error}">
+        <p th:text="${error}" style="color:red">!</p>
+    </div>
+
+
+</div>
+
+</body>
+</html>

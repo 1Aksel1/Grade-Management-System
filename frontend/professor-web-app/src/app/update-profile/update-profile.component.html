@@ -1,0 +1,55 @@
+<app-header></app-header>
+<br>
+
+<div class="p-5">
+
+    <h1 class="text-center">Update profile</h1>
+
+    <br>
+    <br>
+
+    <a [routerLink] = "'/updateEmail'">Update email </a>
+    <br>
+    <a [routerLink] = "'/updatePassword'">Update password</a>
+    
+    <br>
+    <br>
+
+    <div class="form-group">
+
+        <label>Name</label>
+        <input type="text" [(ngModel)]="updateProfessorDto.name" class="form-control" required>
+        <br>
+
+        <label>Surname</label>
+        <input type="text" [(ngModel)]="updateProfessorDto.surname" class="form-control" required>
+        <br>
+
+        <label>Username</label>
+        <input type="text" [(ngModel)]="updateProfessorDto.username" class="form-control" required>
+        <br>
+
+        <label>Telephone Number</label>
+        <input type="text" [(ngModel)]="updateProfessorDto.telephoneNumber" class="form-control" required>
+        <br>
+
+        <label>Date of birth</label>
+        <input type="date" [(ngModel)]="updateProfessorDto.dateOfBirth" class="form-control" required>
+        <br>
+
+        <label>Date of hire</label>
+        <input type="date" [(ngModel)]="updateProfessorDto.hireDate" class="form-control" required>
+        <br>
+
+        <label>Subjects</label>
+        <input type="text" [(ngModel)]="updateProfessorDto.subjects" class="form-control" required>
+        <br>
+
+        <br>
+        <button class="btn btn-primary" (click) = "updateProfessor()" type="submit">Update</button>
+
+
+    </div>
+
+
+</div>

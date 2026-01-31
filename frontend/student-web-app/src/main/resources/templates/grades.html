@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a href="/home" class="navbar-brand">Home</a>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a href="/updateStudent" class="nav-link active" aria-current="page">Update student</a>
+                        <a href="/registerExam" class="nav-link active" aria-current="page">Register exam</a>
+                        <a href="/grades" class="nav-link active" aria-current="page">Grades</a>
+                        <a href="/notifications" class="nav-link active" aria-current="page">Notifications</a>
+                        <a href="/logout" class="nav-link active" aria-current="page">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+        <h2>Student Grades</h2>
+
+        <div th:if="${error}">
+            <div class="alert alert-danger" th:text="${error}"></div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(studentGradeScoreDtos)}">
+            <p>No grades available.</p>
+        </div>
+
+        <div th:if="${!#lists.isEmpty(studentGradeScoreDtos)}">
+            <div th:each="gradeDto : ${studentGradeScoreDtos}" class="card mb-4">
+                <div class="card-header">
+                    <h4 th:text="${gradeDto.courseName}">Course Name</h4>
+                </div>
+                <div class="card-body">
+                    <p><strong>Grade:</strong> <span th:text="${gradeDto.grade}">10</span></p>
+                    <p><strong>Exam Points:</strong> <span th:text="${gradeDto.examPointsScored}">100</span></p>
+                    <p><strong>Exam Period:</strong> <span th:text="${gradeDto.examPeriod}">January</span></p>
+
+                    <h5>Pre-exam Obligations:</h5>
+                    <ul>
+                        <li th:each="preExamScore : ${gradeDto.preExamScoreDtos}">
+                            <span th:text="${preExamScore.obligationName}">Obligation Name</span>:
+                            <span th:text="${preExamScore.pointsScored}">20</span> points
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

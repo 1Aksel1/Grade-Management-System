@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.admindesktopapp.controllers.ExamPeriodController"
+            spacing="10"
+            alignment="TOP_CENTER"
+            prefHeight="1020.0" prefWidth="1240.0">
+
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TableView fx:id="examPeriodTableView" prefWidth="300.0" maxHeight="200.0">
+            <columns>
+                <TableColumn fx:id="periodColumn" text="Exam period" prefWidth="150.0"/>
+                <TableColumn fx:id="statusColumn" text="Active status" prefWidth="150.0"/>
+            </columns>
+        </TableView>
+
+        <VBox spacing="10" alignment="CENTER">
+            <ComboBox fx:id="examPeriodComboBox" promptText="Select Exam Period" prefWidth="150.0"/>
+            <Button text="Activate" onAction="#activateExamPeriod" prefWidth="150.0"/>
+            <Button text="Deactivate" onAction="#deactivateExamPeriod" prefWidth="150.0"/>
+        </VBox>
+    </HBox>
+
+
+    <Label fx:id="errorLabel" text="" style="-fx-text-fill: red;" />
+    <Label fx:id="successLabel" text="" style="-fx-text-fill: blue;" />
+
+</VBox>

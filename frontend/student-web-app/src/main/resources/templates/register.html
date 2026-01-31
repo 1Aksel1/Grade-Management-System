@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register student</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container p-5">
+    <h1 class="text-center">Register student</h1>
+
+    <br>
+
+    <form th:action="@{/register}" th:object="${registerStudentDto}" method="post">
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" th:field="*{name}" class="form-control" id="name" required>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="surname">Surname</label>
+            <input type="text" th:field="*{surname}" class="form-control" id="surname" required>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" th:field="*{username}" class="form-control" id="username" required>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" th:field="*{password}" class="form-control" id="password" required>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" th:field="*{email}" class="form-control" id="email" required>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="indexNumber">Index Number</label>
+            <input type="text" th:field="*{indexNumber}" class="form-control" id="indexNumber" required>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="telephoneNumber">Telephone Number</label>
+            <input type="text" th:field="*{telephoneNumber}" class="form-control" id="telephoneNumber" required>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" th:field="*{dateOfBirth}" class="form-control" id="dateOfBirth" required>
+        </div>
+        <br>
+
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
+    <br>
+
+    <div th:if="${successMessage}">
+        <p th:text="${successMessage}" style="color:#3a3af1">!</p>
+        <a href="#" id="resendActivationLink">Resend activation email</a>
+        <br>
+        <p style="color:#3a3af1" id="resendResponseMessage"></p>
+    </div>
+
+    <div th:if="${error}">
+        <p th:text="${error}" style="color:red">!</p>
+    </div>
+
+    <script th:if="${successMessage}">
+
+        document.getElementById("resendActivationLink").addEventListener('click', function (event) {
+
+            event.preventDefault();
+
+            fetch('http://localhost:8082/student-bff/api/resendActivationEmail', {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("resendResponseMessage").innerText = data.message;
+            })
+            .catch(error => {
+                document.getElementById("resendResponseMessage").innerText = error;
+            })
+
+        });
+
+
+    </script>
+
+
+
+</div>
+</body>
+</html>

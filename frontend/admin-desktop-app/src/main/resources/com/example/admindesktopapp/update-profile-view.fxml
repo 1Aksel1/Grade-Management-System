@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.admindesktopapp.controllers.UpdateProfileController"
+            prefHeight="1020.0" prefWidth="1240.0">
+
+    <Label text="Update profile" />
+
+    <Label text="Name: "/>
+    <TextField fx:id="nameField"/>
+
+    <Label text="Surname: "/>
+    <TextField fx:id="surnameField" />
+
+    <Label text="Username: "/>
+    <TextField fx:id="usernameField" />
+
+    <TextField fx:id="emailField" visible="false" managed="false"/>
+
+    <Label text="Telephone number: "/>
+    <TextField fx:id="telephoneField" />
+
+    <Label text="Date of birth: "/>
+    <TextField fx:id="dateOfBirth" />
+
+    <Button text="Update" onAction="#updateProfile"/>
+
+    <Label fx:id="errorLabel" text="" style="-fx-text-fill: red;" />
+
+    <Label fx:id="successLabel" text="" style="-fx-text-fill: blue;" />
+
+
+</VBox>

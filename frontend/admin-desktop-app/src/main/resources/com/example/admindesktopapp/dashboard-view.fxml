@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane fx:id="tabPane" xmlns="http://javafx.com/javafx"  xmlns:fx="http://javafx.com/fxml"  fx:controller="com.example.admindesktopapp.controllers.DashboardController">
+
+    <tabs>
+        <Tab text="Home" closable="false">
+        <content>
+            <fx:include source="home-view.fxml"/>
+        </content>
+        </Tab>
+        <Tab fx:id="updateProfileTab" text="Update profile" closable="false">
+            <content>
+                <fx:include source="update-profile-view.fxml"/>
+            </content>
+        </Tab>
+        <Tab fx:id="updateEmailTab" text="Update email" closable="false">
+            <content>
+                <fx:include source="update-email-view.fxml"/>
+            </content>
+        </Tab>
+        <Tab fx:id="updatePasswordTab" text="Update password" closable="false">
+            <content>
+                <fx:include source="update-password-view.fxml"/>
+            </content>
+        </Tab>
+        <Tab fx:id="examPeriodsTab" text="Exam periods" closable="false">
+            <content>
+                <fx:include source="exam-periods-view.fxml"/>
+            </content>
+        </Tab>
+        <Tab fx:id="notificationsTypeTab" text="Notification types" closable="false">
+            <content>
+                <fx:include source="notification-types-view.fxml"/>
+            </content>
+        </Tab>
+        <Tab fx:id="savedNotificationsTab" text="Saved notifications" closable="false">
+            <content>
+                <fx:include source="saved-notifications-view.fxml"/>
+            </content>
+        </Tab>
+        <Tab text="Logout" closable="false">
+            <content>
+                <fx:include source="logout-view.fxml"/>
+            </content>
+        </Tab>
+    </tabs>
+
+
+
+
+</TabPane>

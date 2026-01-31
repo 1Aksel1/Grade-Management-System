@@ -1,0 +1,177 @@
+<app-header></app-header>
+
+<br>
+
+<h1 class="text-center">{{course.name}}</h1>
+<br>
+<h4 class="text-center">Study program: {{course.studyProgram}}</h4>
+<h4 class="text-center">Ects: {{course.ects}}</h4>
+
+<br>
+
+<div class="container">
+
+    <div class="row mb-5">
+        
+        <!-- Left side: Pre exam obligations and Student enrollments -->
+        <div class="col-md-6">
+            
+            <!-- Pre exam obligations section -->
+            <h3 class="text-center">Pre exam obligations</h3>
+            
+            <table class="table table-striped" style="width: 100%;">
+                
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Max points</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let preExamObligation of course.preExamObligations">
+                        <td>{{preExamObligation.name}}</td>
+                        <td>{{preExamObligation.maxPoints}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <div class="row">
+                <div class="col-6">
+                    <label for="peo_name">Name:</label>
+                    <input type="text" id="peo_name" class="form-control" [(ngModel)]="peoName">
+                </div>
+                <div class="col-6">
+                    <label for="peo_maxPoints">Max points:</label>
+                    <input type="text" id="peo_maxPoints" class="form-control" [(ngModel)]="peoMaxPoints">
+                </div>
+            </div>
+
+            <div class="text-right mt-2">
+                <button class="btn btn-primary" (click)="createPreExamObligation()">Submit</button>                    
+            </div>
+
+            <!-- Student enrollments section -->
+            <h3 class="text-center mt-5">Student enrollments</h3>
+            
+            <table class="table table-striped" style="width: 100%;">
+                
+                <thead>
+                    <tr>
+                        <th scope="col">Student index</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let studentEnrollment of course.studentEnrollments">
+                        <td>{{studentEnrollment.studentIndex}}</td>
+                        <td>{{studentEnrollment.status}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- Right side: Pre exam obligation scores -->
+        <div class="col-md-6">
+            
+            <h3 class="text-center">Pre exam obligation scores</h3>
+            
+            <table class="table table-striped" style="width: 100%;">
+                
+                <thead>
+                    <tr>
+                        <th scope="col">Student index</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Points scored</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let preExamObligationScore of course.preExamObligationScores">
+                        <td>{{preExamObligationScore.studentIndex}}</td>
+                        <td>{{preExamObligationScore.name}}</td>
+                        <td>{{preExamObligationScore.pointsScored}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <div class="row">
+                <div class="col-4">
+                    <label for="peos_student_index">Student index:</label>
+                    <input type="text" id="peos_student_index" class="form-control" [(ngModel)]="peosStudentIndex">
+                </div>
+                <div class="col-4">
+                    <label for="peos_name">Name:</label>
+                    <input type="text" id="peos_name" class="form-control" [(ngModel)]="peosName">
+                </div>
+                <div class="col-4">
+                    <label for="peos_points_scored">Points scored:</label>
+                    <input type="text" id="peos_points_scored" class="form-control" [(ngModel)]="peosPointsScored">
+                </div>
+            </div>
+
+            <div class="text-right mt-2">
+                <button class="btn btn-primary" (click)="createPreExamObligationScore()" >Submit</button>                    
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <!-- Centered Grades section -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h3 class="text-center">Grades</h3>
+            
+            <table class="table table-striped" style="width: 100%;">
+                
+                <thead>
+                    <tr>
+                        <th scope="col">Student index</th>
+                        <th scope="col">Grade</th>
+                        <th scope="col">Exam points</th>
+                        <th scope="col">Exam period</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let grade of course.grades">
+                        <td>{{grade.studentIndex}}</td>
+                        <td>{{grade.grade}}</td>
+                        <td>{{grade.examPoints}}</td>
+                        <td>{{grade.examPeriod}}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <div class="row">
+                <div class="col-4">
+                    <label for="grade_student_index">Student index:</label>
+                    <input type="text" id="grade_student_index" class="form-control" [(ngModel)]="gradeStudentIndex">
+                </div>
+                <div class="col-4">
+                    <label for="grade_points_scored">Points scored:</label>
+                    <input type="text" id="grade_points_scored" class="form-control" [(ngModel)]="gradePointsScored">
+                </div>
+                <div class="col-4">
+                    <label for="grade_exam_period">Exam period:</label>
+                    <input type="text" id="grade_exam_period" class="form-control" [(ngModel)]="gradeExamPeriod">
+                </div>
+            </div>
+
+            <div class="text-right mt-2">
+                <button class="btn btn-primary" (click) = "createGrade()">Submit</button>                    
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,139 @@
+version: "3.8"
+
+services:
+
+  user-db:
+    image: mysql:5.7
+    container_name: user-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: user-service
+      MYSQL_ROOT_PASSWORD: 123123123
+    ports:
+      - "4406:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  grade-db:
+    image: mysql:5.7
+    container_name: grade-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: grade-management-service
+      MYSQL_ROOT_PASSWORD: 123123123
+    ports:
+      - "4407:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  notification-db:
+    image: mysql:5.7
+    container_name: notification-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: notification-service
+      MYSQL_ROOT_PASSWORD: 123123123
+    ports:
+      - "4408:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  eureka:
+    image: ghcr.io/1aksel1/eureka-server:latest
+    container_name: eureka
+    ports:
+      - "8761:8761"
+    restart: always
+
+  amq:
+    image: ghcr.io/1aksel1/message-broker:latest
+    container_name: amq
+    depends_on:
+      - eureka
+    ports:
+      - "61616:61616"
+    restart: always
+
+  user-service:
+    image: ghcr.io/1aksel1/user-service:latest
+    container_name: user-service
+    depends_on:
+      - user-db
+      - eureka
+      - amq
+    ports:
+      - "8090:8090"
+    restart: always
+
+  grade-management-service:
+    image: ghcr.io/1aksel1/grade-management-service:latest
+    container_name: grade-management-service
+    depends_on:
+      - grade-db
+      - eureka
+      - amq
+    ports:
+      - "8091:8091"
+    restart: always
+
+  notification-service:
+    image: ghcr.io/1aksel1/notification-service:latest
+    container_name: notification-service
+    depends_on:
+      - notification-db
+      - eureka
+      - amq
+      - grade-management-service
+    ports:
+      - "8092:8092"
+    restart: always
+
+  admin-bff:
+    image: ghcr.io/1aksel1/admin-bff:latest
+    container_name: admin-bff
+    depends_on:
+      - user-service
+      - grade-management-service
+      - notification-service
+    ports:
+      - "8080:8080"
+    restart: always
+
+  professor-bff:
+    image: ghcr.io/1aksel1/professor-bff:latest
+    container_name: professor-bff
+    depends_on:
+      - user-service
+      - grade-management-service
+      - notification-service
+    ports:
+      - "8081:8081"
+    restart: always
+
+  student-bff:
+    image: ghcr.io/1aksel1/student-bff:latest
+    container_name: student-bff
+    depends_on:
+      - user-service
+      - grade-management-service
+      - notification-service
+    ports:
+      - "8082:8082"
+    restart: always
+
+  student-client:
+    image: ghcr.io/1aksel1/student-client:latest
+    container_name: student-client
+    depends_on:
+      - student-bff
+    ports:
+      - "8085:8085"
+    restart: always
+
+  professor-client:
+    image: ghcr.io/1aksel1/professor-client:latest
+    container_name: professor-client
+    depends_on:
+      - professor-bff
+    ports:
+      - "80:80"
+    restart: always
+
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.util.Callback?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.admindesktopapp.controllers.NotificationsTypeController"
+            prefHeight="1020.0" prefWidth="1240.0">
+
+    <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+
+        <Label text="Notification types" style="-fx-font-size: 24px; -fx-alignment: center;" />
+
+        <TableView fx:id="notificationTypeDtoTableView">
+            <columns>
+                <TableColumn fx:id="idColumn" text="Id" prefWidth="50" />
+                <TableColumn fx:id="typeNameColumn" text="Type Name" prefWidth="120" />
+                <TableColumn fx:id="subjectColumn" text="Subject" prefWidth="160" />
+                <TableColumn fx:id="templateColumn" text="Template" prefWidth="680" />
+                <TableColumn fx:id="parametersColumn" text="Parameters" prefWidth="210" />
+            </columns>
+        </TableView>
+
+
+        <HBox spacing="20">
+
+            <!-- Update Notification Section -->
+            <VBox spacing="10">
+                <Label text="Update notification" style="-fx-font-size: 24px; -fx-alignment: center;" />
+
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Type Name:" />
+                    <TextField fx:id="typeNameField" GridPane.columnIndex="1" />
+
+                    <Label text="Subject:" GridPane.rowIndex="1" />
+                    <TextField fx:id="subjectField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Template:" GridPane.rowIndex="2" />
+                    <TextArea fx:id="templateTextArea" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                    <Label text="Parameters:" GridPane.rowIndex="3" />
+                    <TextField fx:id="parametersField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                    <Button text="Update Notification" onAction="#updateNotification" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                </GridPane>
+            </VBox>
+
+            <VBox spacing="10">
+                <Label text="Create notification" style="-fx-font-size: 24px; -fx-alignment: center;" />
+
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Type Name:" />
+                    <TextField fx:id="createTypeNameField" GridPane.columnIndex="1" />
+
+                    <Label text="Subject:" GridPane.rowIndex="1" />
+                    <TextField fx:id="createSubjectField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Template:" GridPane.rowIndex="2" />
+                    <TextArea fx:id="createTemplateTextArea" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                    <Label text="Parameters:" GridPane.rowIndex="3" />
+                    <TextField fx:id="createParametersField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                    <Button text="Create Notification" onAction="#createNotification" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                </GridPane>
+            </VBox>
+
+        </HBox>
+
+
+        <VBox layoutX="700.0" layoutY="450.0" spacing="10.0">
+            <Label text="Delete Notification" style="-fx-font-size: 18px;"/>
+            <HBox spacing="10.0">
+                <Label text="ID:"/>
+                <TextField fx:id="deleteIdField" prefWidth="100.0"/>
+            </HBox>
+            <Button text="Delete Notification" onAction="#deleteNotification"/>
+        </VBox>
+
+
+
+        <Label fx:id="errorLabel" text="" style="-fx-text-fill: red;" />
+
+        <Label fx:id="successLabel" text="" style="-fx-text-fill: blue;" />
+
+
+    </VBox>
+
+</AnchorPane>

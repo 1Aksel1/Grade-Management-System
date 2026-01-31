@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a href="/home" class="navbar-brand">Home</a>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a href="/updateStudent" class="nav-link active" aria-current="page">Update student</a>
+                        <a href="/registerExam" class="nav-link active" aria-current="page">Register exam</a>
+                        <a href="/grades" class="nav-link active" aria-current="page">Grades</a>
+                        <a href="/notifications" class="nav-link active" aria-current="page">Notifications</a>
+                        <a href="/logout" class="nav-link active" aria-current="page">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+
+        <h1 class="text-center">Your notifications</h1>
+        <br>
+        <h3>Search filters</h3>
+        <br>
+
+        <form th:action="@{/notifications}" th:object="${filterParametersDto}" method="post">
+            <div class="row">
+                <div class="col-auto form-check">
+                    <input type="checkbox" th:field="*{accountActivation}" class="form-check-input" id="accountActivation" checked>
+                    <label class="form-check-label" for="accountActivation">Account activation</label>
+                </div>
+
+                <div class="col-auto form-check">
+                    <input type="checkbox" th:field="*{passwordChange}" class="form-check-input" id="passwordChange" checked>
+                    <label class="form-check-label" for="passwordChange">Password change</label>
+                </div>
+
+                <div class="col-auto form-check">
+                    <input type="checkbox" th:field="*{examPeriodActivation}" class="form-check-input" id="examPeriodActivation" checked>
+                    <label class="form-check-label" for="examPeriodActivation">Exam period activation</label>
+                </div>
+
+                <div class="col-auto form-check">
+                    <input type="checkbox" th:field="*{gradeAdded}" class="form-check-input" id="gradeAdded" checked>
+                    <label class="form-check-label" for="gradeAdded">Grade added</label>
+                </div>
+
+                <div class="col-auto form-group">
+                    <label for="dateFrom" class="form-label">Date From:</label>
+                    <input type="date" th:field="*{dateFrom}" class="form-control" id="dateFrom">
+                </div>
+
+                <div class="col-auto form-group">
+                    <label for="dateTo" class="form-label">Date To:</label>
+                    <input type="date" th:field="*{dateTo}" class="form-control" id="dateTo">
+                </div>
+
+                <div class="col-auto">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <br>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Email</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Content</th>
+                <th scope="col">Sent</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="notification : ${notifications}">
+                <td th:text="${notification.email}"></td>
+                <td th:text="${notification.subject}"></td>
+                <td th:text="${notification.content}"></td>
+                <td th:text="${notification.sentTimeAndDate}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <br>
+
+    <div th:if="${error}">
+        <p th:text="${error}" style="color:red"></p>
+    </div>
+
+
+
+
+</body>
+</html>

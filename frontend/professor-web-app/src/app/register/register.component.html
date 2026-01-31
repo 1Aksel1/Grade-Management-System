@@ -1,0 +1,59 @@
+<div class="p-5">
+
+    <h1 class="text-center">Register account</h1>
+
+    <br>
+
+    <div class="form-group">
+
+        <label>Name</label>
+        <input type="text" [(ngModel)]="registerProfessorDto.name" class="form-control" required>
+        <br>
+
+        <label>Surname</label>
+        <input type="text" [(ngModel)]="registerProfessorDto.surname" class="form-control" required>
+        <br>
+
+        <label>Username</label>
+        <input type="text" [(ngModel)]="registerProfessorDto.username" class="form-control" required>
+        <br>
+
+        <label>Password</label>
+        <input type="password" [(ngModel)]="registerProfessorDto.password" class="form-control" required>
+        <br>
+
+        <label>Email</label>
+        <input type="email" [(ngModel)]="registerProfessorDto.email" class="form-control" required>
+        <br>
+
+        <label>Telephone Number</label>
+        <input type="text" [(ngModel)]="registerProfessorDto.telephoneNumber" class="form-control" required>
+        <br>
+
+        <label>Date of birth</label>
+        <input type="date" [(ngModel)]="registerProfessorDto.dateOfBirth" class="form-control" required>
+        <br>
+
+        <label>Date of hire</label>
+        <input type="date" [(ngModel)]="registerProfessorDto.hireDate" class="form-control" required>
+        <br>
+
+        <label>Subjects</label>
+        <input type="text" [(ngModel)]="registerProfessorDto.subjects" class="form-control" required>
+        <br>
+
+        <br>
+        <button class="btn btn-primary" (click) = "register()" type="submit">Register</button>
+
+        <br>
+        <br>
+
+        <label [hidden] = "!registrationPending">Resend activation email</label>
+        <br>
+        <button class="btn btn-primary" [hidden] = "!registrationPending" (click)="resendActivationEmail()">Resend</button> 
+
+
+    </div>
+
+
+</div>

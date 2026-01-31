@@ -1,0 +1,29 @@
+<div class="p-5">
+
+
+    <h2 class="text-center">Log in</h2>
+    <br>
+
+    <div class="form-group">
+
+        <label>Email: </label>
+        <input type="email" [(ngModel)]="email" class="form-control" required>
+        
+        <label>Password: </label>
+        <input type="password" [(ngModel)]="password" class="form-control" required>
+        
+        <br>
+        <button class="btn btn-primary" type="submit" (click)="login()">Log in</button>
+
+
+    </div>
+
+    <br>
+    
+    <div class="form-group">
+        <a [routerLink]="'/register'">Register a professor account</a>       
+    </div>
+
+
+
+</div>

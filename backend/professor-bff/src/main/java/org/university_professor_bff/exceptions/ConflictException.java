@@ -1,0 +1,10 @@
+package org.university_professor_bff.exceptions;
+
+public class ConflictException extends RuntimeException {
+
+    public ConflictException(String message) {
+        super(message);
+    }
+
+
+}

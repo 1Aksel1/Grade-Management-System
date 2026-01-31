@@ -1,0 +1,96 @@
+<app-header></app-header>
+
+<br>
+
+
+<h1 class="text-center">Your notifications</h1>
+
+<br>
+<br>
+
+<div class="container-fluid">
+
+	<h3>Search filters</h3>
+
+    <br>
+
+	<div class="row">
+
+        <div class="col-auto form-check">
+            <input type="checkbox" id="accountActivation" class="form-check-input" [(ngModel)]="accountActivation" checked>
+            <label class="form-check-label" for="accountActivation">
+                Account activation
+            </label>
+        </div>
+
+        <div class="col-auto form-check">
+            <input type="checkbox" id="passwordChange" class="form-check-input" [(ngModel)]="passwordChange" checked>
+            <label class="form-check-label" for="passwordChange">
+                Password change
+            </label>
+        </div>
+        
+        <div class="col-auto form-check">
+            <input type="checkbox" id="examPeriodActivation" class="form-check-input" [(ngModel)]="examPeriodActivation" checked>
+            <label class="form-check-label" for="examPeriodActivation">
+                Exam period activation
+            </label>
+        </div>
+
+        <div class="col-auto form-check">
+            <input type="checkbox" id="gradeAdded" class="form-check-input" [(ngModel)]="gradeAdded" checked>
+            <label class="form-check-label" for="gradeAdded">
+                Grade added
+            </label>
+        </div>
+
+        <div class="col-auto">
+            <div class="form-group">
+                <label for="dateFrom" class="form-label">Date From:</label>
+                <input type="date" id="dateFrom" class="form-control" [(ngModel)]="dateFrom">
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <div class="form-group">
+                <label for="toDate" class="form-label">Date To:</label>
+                <input type="date" id="toDate" class="form-control" [(ngModel)]="toDate">
+            </div>
+        </div>
+
+        <div class="col-auto">
+                <button class="btn btn-primary" (click) = "searchNotifications()" type="submit">Search</button>
+        </div>
+
+	</div>
+
+	<br>
+	<br>
+
+</div>
+
+
+<table class="table table-striped">
+    
+	<thead>
+		<tr>
+			<th scope="col">Id</th>
+			<th scope="col">Email</th>
+			<th scope="col">Subject</th>
+			<th scope="col">Content</th>
+            <th scope="col">Sent</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr *ngFor="let notification of notifications">
+			<td>{{notification.id}}</td>
+			<td>{{notification.email}}</td>
+			<td>{{notification.subject}}</td>
+			<td>{{notification.content}}</td>
+            <td>{{notification.sentTimeAndDate}}</td>
+		</tr>
+	</tbody>
+
+
+</table>

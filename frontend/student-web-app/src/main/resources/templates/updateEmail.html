@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Email</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a href="/home" class="navbar-brand">Home</a>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a href="/updateStudent" class="nav-link active" aria-current="page">Update student</a>
+                        <a href="/registerExam" class="nav-link active" aria-current="page">Register exam</a>
+                        <a href="/grades" class="nav-link active" aria-current="page">Grades</a>
+                        <a href="/notifications" class="nav-link active" aria-current="page">Notifications</a>
+                        <a href="/logout" class="nav-link active" aria-current="page">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container p-5">
+        <h2 class="text-center">Update Email</h2>
+        <br>
+
+        <form th:action="@{/updateEmail}" th:object="${updateEmailDto}" method="post">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" th:field="*{email}" class="form-control" required>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+
+        </form>
+
+        <br>
+
+
+    <div th:if="${successMessage}">
+        <p th:text="${successMessage}" style="color:#3a3af1"></p>
+    </div>
+
+
+    <div th:if="${error}">
+        <p th:text="${error}" style="color:red">!</p>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

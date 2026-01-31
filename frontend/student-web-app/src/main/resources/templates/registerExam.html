@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register exam</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a href="/home" class="navbar-brand">Home</a>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a href="/updateStudent" class="nav-link active" aria-current="page">Update student</a>
+                        <a href="/registerExam" class="nav-link active" aria-current="page">Register exam</a>
+                        <a href="/grades" class="nav-link active" aria-current="page">Grades</a>
+                        <a href="/notifications" class="nav-link active" aria-current="page">Notifications</a>
+                        <a href="/logout" class="nav-link active" aria-current="page">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+
+        <h1 class="text-center">Courses where your enrollment status is active</h1>
+
+        <table class="table table-bordered table-striped mt-4">
+            <thead class="thead-dark">
+            <tr>
+                <th>Course Name</th>
+                <th>Study Program</th>
+                <th>ECTS</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="course : ${enrolledCourses}">
+                <td th:text="${course.name}">Course Name</td>
+                <td th:text="${course.studyProgram}">Study Program</td>
+                <td th:text="${course.ECTS}">ECTS</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <h1 class="text-center">Registered exams</h1>
+
+        <table class="table table-bordered table-striped mt-4">
+            <thead class="thead-dark">
+            <tr>
+                <th>Course Name</th>
+                <th>Exam period</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="registeredExam : ${registeredExams}">
+                <td th:text="${registeredExam.courseName}">Course Name</td>
+                <td th:text="${registeredExam.examPeriod}">Exam period</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <h2 class="text-center mt-5">Register Exam</h2>
+
+        <form th:action="@{/registerExam}" th:object="${registerExamDto}" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="courseName">Course Name</label>
+                <input type="text" class="form-control" id="courseName" name="courseName" th:field="*{courseName}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="examPeriod">Exam Period</label>
+                <select class="form-control" id="examPeriod" name="examPeriod" th:field="*{examPeriod}" required>
+                    <option value="" disabled selected>Select Exam Period</option>
+                    <option value="JANUARY">January</option>
+                    <option value="FEBRUARY">February</option>
+                    <option value="JUNE">June</option>
+                    <option value="JULY">July</option>
+                    <option value="AUGUST">August</option>
+                    <option value="SEPTEMBER">September</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+
+        <div th:if="${successMessage}" class="mt-4">
+            <p th:text="${successMessage}" style="color:#3a3af1"></p>
+        </div>
+
+        <div th:if="${error}" class="mt-4">
+            <p th:text="${error}" style="color:red"></p>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
